@@ -9,8 +9,8 @@ yargs.command({
     builder: {
         title: { // название создаваемой заметки
             type: 'string', // тип создаваемй заметки
-            demandOption: true, // мол этот параметр обязателен
-            descride: 'Title of new note'
+            demandOption: true, // этот параметр (title) обязателен
+            describe: 'Title of new note'
         },
         body: { // текст внутри заметки
             type: 'string',
@@ -31,22 +31,32 @@ yargs.command({
     command: 'list',
     describe: 'list all notes',
     handler() {
-        console.log('LIST command: ');
+        creator.listOfNotes();
     }
 });
 yargs.command({
     command: 'read',
     describe: 'read one note by its title',
-    handler() {
-        console.log('READ command: ');
+    title: {
+        type: 'string',
+        demandOption: true,
+        describe: 'Title of new note'
+    },
+    handler({title}) {
+        creator.readNote(title);
     }
 });
 yargs.command({
     command: 'remove',
     describe: 'remove one note by its title',
-    handler() {
-        console.log('REMOVE command: ');
-    }
+    title: { 
+        type: 'string',
+        demandOption: true,
+        describe: 'Title of new note'
+    },
+    handler({title}) {
+        creator.removeNote(title);
+    } 
 });
 
-yargs.parse();
+yargs.parse(); // читает из консоли данные

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node note.js",
-    "list": "node note.js list"
+    "list": "node note.js list",
+    "add": "node note.js add"
   },
   "keywords": [
     "learn",

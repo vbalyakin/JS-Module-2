@@ -3,7 +3,7 @@ const packageJSON = require('./package.json');
 yargs.version(packageJSON.version);
 const creator = require('./creator');
 
-yargs.command({
+yargs.command({ // АПГРЕЙД ДО ИСЧЕЗНОВЕНИЯ --body (глянуть yargs)
     command: 'add',
     describe: 'add new unique note',
     builder: {

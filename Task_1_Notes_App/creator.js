@@ -3,7 +3,12 @@ const fs = require("fs"),
     pathToNotesStorage = path.join("./notes.json");
 
 const getAllNotes = () => {
-    return JSON.parse(fs.readFileSync(pathToNotesStorage));
+    try {
+        return JSON.parse(fs.readFileSync(pathToNotesStorage));
+    } catch (error) {
+        fs.writeFileSync(pathToNotesStorage, JSON.stringify([]));
+        return JSON.parse(fs.readFileSync(pathToNotesStorage));
+    }
 };
 
 const createNote = (title, body) => {
@@ -31,14 +36,14 @@ const listOfNotes = () => {
     }
 };
 
-const readNote = (title) => {
+const readNote = title => {
     const array = getAllNotes(),
-        noteFinder = array.find(element => element.title === title);
-    result = noteFinder ? `Your note:\n${title} - ` + noteFinder.body : "Note isn't exist!";
+        noteFinder = array.find(element => element.title === title),
+        result = noteFinder ? `Your note:\n${title} - ` + noteFinder.body : "Note isn't exist!";
     console.log(result);
 };
 
-const removeNote = (title) => {
+const removeNote = title => {
     const array = getAllNotes();
     const sortedNotes = array.length !== 0 ? array.filter(note => note.title !== title) : [];
     if (array.length !== sortedNotes.length) {

@@ -6,13 +6,13 @@ const fs = require("fs"),
 
 const importDataSync = () => {
     const promiseFirst = new Promise(resolve => resolve(
-        csv()
-        .fromFile(pathCSV)
-    ));
-    const promiseSecond = new Promise(resolve => resolve(
-        csv()
-        .fromFile(pathCSVSecond)
-    ));
+            csv()
+            .fromFile(pathCSV)
+        )),
+        promiseSecond = new Promise(resolve => resolve(
+            csv()
+            .fromFile(pathCSVSecond)
+        ));
     Promise.all([promiseFirst, promiseSecond])
         .then(value => {
             console.log(value);
@@ -22,10 +22,10 @@ const importDataSync = () => {
 
 const importData = () => {
     const promiseFirst = new Promise(resolve => resolve(
-        csv().fromFile(pathCSV)
-        ));
-    const promiseSecond = new Promise(resolve => resolve(
-        csv().fromFile(pathCSVSecond)
+            csv().fromFile(pathCSV)
+        )),
+        promiseSecond = new Promise(resolve => resolve(
+            csv().fromFile(pathCSVSecond)
         ));
     promiseFirst
         .then(jsonObject => {
